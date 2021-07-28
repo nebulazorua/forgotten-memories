@@ -411,7 +411,7 @@ class TitleState extends MusicBeatState
 		if (!skippedIntro)
 		{
 			remove(ngSpr);
-			FlxTween.tween(logoBl, {y: 0}, .5, {startDelay:1, ease: FlxEase.backOut});
+			FlxTween.tween(logoBl, {y: 0}, 1, {startDelay:1, ease: FlxEase.backOut});
 
 			FlxG.camera.flash(FlxColor.WHITE, 4);
 			remove(credGroup);

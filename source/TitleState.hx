@@ -140,25 +140,23 @@ class TitleState extends MusicBeatState
 		// bg.updateHitbox();
 		add(bg);
 
-		logoBl = new FlxSprite(-150, -100);
-		logoBl.frames = Paths.getSparrowAtlas('logoBumpin');
+		logoBl = new FlxSprite(0, -50);
+		logoBl.frames = Paths.getSparrowAtlas('Forgotten_memories');
 		logoBl.antialiasing = true;
-		logoBl.animation.addByPrefix('bump', 'logo bumpin', 24);
+		logoBl.animation.addByPrefix('bump', 'Logo', 24);
+		logoBl.setGraphicSize(Std.int(logoBl.width*.5));
 		logoBl.animation.play('bump');
 		logoBl.updateHitbox();
+		logoBl.screenCenter(X);
+		logoBl.y += FlxG.height;
 		// logoBl.screenCenter();
 		// logoBl.color = FlxColor.BLACK;
-
-		gfDance = new FlxSprite(FlxG.width * 0.4, FlxG.height * 0.07);
-		gfDance.frames = Paths.getSparrowAtlas('gfDanceTitle');
-		gfDance.animation.addByIndices('danceLeft', 'Idle', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16], "", 24, false);
-		gfDance.animation.addByIndices('danceRight', 'Idle', [17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24,
-			false);
-		gfDance.setGraphicSize(Std.int(gfDance.width*.7));
-		gfDance.y -= 75;
-		gfDance.alpha=.1;
-		gfDance.antialiasing = true;
-		add(gfDance);
+		var bg:FlxSprite = new FlxSprite(-600, -500).loadGraphic(Paths.image('forest'));
+		bg.antialiasing = true;
+		bg.setGraphicSize(Std.int(bg.width*1));
+		bg.scrollFactor.set(1, 1);
+		bg.active = false;
+		add(bg);
 		add(logoBl);
 
 		titleText = new FlxSprite(100, FlxG.height * 0.8);
@@ -352,14 +350,6 @@ class TitleState extends MusicBeatState
 	{
 		super.beatHit();
 
-		logoBl.animation.play('bump');
-		danceLeft = !danceLeft;
-
-		if (danceLeft)
-			gfDance.animation.play('danceRight');
-		else
-			gfDance.animation.play('danceLeft');
-
 		FlxG.log.add(curBeat);
 
 		switch (curBeat)
@@ -421,6 +411,7 @@ class TitleState extends MusicBeatState
 		if (!skippedIntro)
 		{
 			remove(ngSpr);
+			FlxTween.tween(logoBl, {y: 0}, .5, {startDelay:1, ease: FlxEase.backOut});
 
 			FlxG.camera.flash(FlxColor.WHITE, 4);
 			remove(credGroup);

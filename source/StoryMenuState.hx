@@ -246,11 +246,6 @@ class StoryMenuState extends MusicBeatState
 					leftArrow.animation.play('press');
 				else
 					leftArrow.animation.play('idle');
-
-				if (controls.RIGHT_P)
-					changeDifficulty(1);
-				if (controls.LEFT_P)
-					changeDifficulty(-1);
 			}
 
 			if (controls.ACCEPT)
@@ -314,12 +309,8 @@ class StoryMenuState extends MusicBeatState
 
 	function changeDifficulty(change:Int = 0):Void
 	{
-		curDifficulty += change;
+		curDifficulty = 1;
 
-		if (curDifficulty < 0)
-			curDifficulty = 2;
-		if (curDifficulty > 2)
-			curDifficulty = 0;
 
 		sprDifficulty.offset.x = 0;
 

@@ -1,0 +1,4 @@
+singUP 0 0
+singDOWN 0 -23
+singLEFT 21 -12
+singRIGHT 2 -13

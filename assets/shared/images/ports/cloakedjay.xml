@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="cloakedjay.png">
+	<!-- Created with Adobe Animate version 21.0.5.40714 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="cloakedjay0000" x="4" y="4" width="321" height="334" pivotX="-374.85" pivotY="275.4" frameX="0" frameY="-8" frameWidth="321" frameHeight="342"/>
+	<SubTexture name="cloakedjay0001" x="4" y="4" width="321" height="334" frameX="0" frameY="-8" frameWidth="321" frameHeight="342"/>
+	<SubTexture name="cloakedjay0002" x="329" y="4" width="301" height="342" frameX="-10" frameY="0" frameWidth="321" frameHeight="342"/>
+	<SubTexture name="cloakedjay0003" x="329" y="4" width="301" height="342" frameX="-10" frameY="0" frameWidth="321" frameHeight="342"/>
+</TextureAtlas>

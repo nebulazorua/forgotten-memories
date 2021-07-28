@@ -97,7 +97,9 @@ class Character extends FlxSprite
 
 				loadOffsets();
 				playAnim('danceRight');
-			case 'jay':
+			case 'jay' | 'nobody':
+				if(curCharacter=='nobody')
+					visible=false;
 				tex = Paths.getSparrowAtlas('characters/jayposes','shared');
 				frames = tex;
 				animation.addByPrefix('idle', 'Idle', 24, false);
@@ -112,7 +114,7 @@ class Character extends FlxSprite
 				tex = Paths.getSparrowAtlas('characters/jay','shared');
 				frames = tex;
 				animation.addByPrefix('idle', 'Dad idle', 24, false);
-				animation.addByPrefix('singUP', 'Dad Sing Note UP', 24, false);
+				animation.addByPrefix('singUP', 'Dad Sing note UP', 24, false);
 				animation.addByPrefix('singDOWN', 'Dad Sing Note DOWN', 24, false);
 				animation.addByPrefix('singLEFT', 'Dad Sing Note LEFT', 24, false);
 				animation.addByPrefix('singRIGHT', 'Dad Sing Note RIGHT', 24, false);
@@ -120,18 +122,22 @@ class Character extends FlxSprite
 
 				playAnim('idle');
 
-				setGraphicSize(Std.int(width*.8));
+				setGraphicSize(Std.int(width*.9));
 			case 'ghostjay':
 				tex = Paths.getSparrowAtlas('characters/finaljay','shared');
 				frames = tex;
 				animation.addByPrefix('idle', 'Idle', 24, false);
+				animation.addByIndices('danceLeft', 'Idle', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16], "", 24, false);
+				animation.addByIndices('danceRight', 'Idle', [17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24,
+					false);
+
 				animation.addByPrefix('singUP', 'Up', 24, false);
 				animation.addByPrefix('singDOWN', 'Down', 24, false);
 				animation.addByPrefix('singLEFT', 'Left', 24, false);
 				animation.addByPrefix('singRIGHT', 'Right', 24, false);
 				loadOffsets();
 
-				playAnim('idle');
+				playAnim('danceLeft');
 			case 'bf':
 				var tex = Paths.getSparrowAtlas('characters/BOYFRIEND','shared');
 				frames = tex;
@@ -383,19 +389,18 @@ class Character extends FlxSprite
 		if (!debugMode && !disabledDance)
 		{
 			holding=false;
-			if(animation.getByName("idle")!=null)
-				playAnim("idle");
-			else if (animation.getByName("danceRight")!=null && animation.getByName("danceLeft")!=null){
+			if (animation.getByName("danceRight")!=null && animation.getByName("danceLeft")!=null){
 				if (!animation.curAnim.name.startsWith('hair'))
 				{
 					danced = !danced;
 
 					if (danced)
-						playAnim('danceRight');
+						playAnim('danceRight',true);
 					else
-						playAnim('danceLeft');
+						playAnim('danceLeft',true);
 				}
-			}
+			}else if(animation.getByName("idle")!=null)
+				playAnim("idle");
 		}
 	}
 

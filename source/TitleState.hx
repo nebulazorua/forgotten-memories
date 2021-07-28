@@ -40,6 +40,7 @@ class TitleState extends MusicBeatState
 	var credTextShit:Alphabet;
 	var textGroup:FlxGroup;
 	var ngSpr:FlxSprite;
+	var startedIntro:Bool=false;
 
 	var curWacky:Array<String> = [];
 
@@ -47,19 +48,9 @@ class TitleState extends MusicBeatState
 
 	override public function create():Void
 	{
-		#if polymod
-		polymod.Polymod.init({modRoot: "mods", dirs: ['introMod']});
-		#end
-
-		OptionUtils.bindSave();
-		OptionUtils.loadOptions(OptionUtils.options);
-		PlayerSettings.init();
-
 		curWacky = FlxG.random.getObject(getIntroTextShit());
 
 		// DEBUG BULLSHIT
-
-		super.create();
 
 		/*NGio.noLogin(APIStuff.API);
 
@@ -67,10 +58,6 @@ class TitleState extends MusicBeatState
 		var ng:NGio = new NGio(APIStuff.API, APIStuff.EncKey);
 		trace('NEWGROUNDS LOL');
 		#end*/
-
-		FlxG.save.bind('funkin', 'ninjamuffin99');
-
-		Highscore.load();
 
 		if (FlxG.save.data.weekUnlocked != null)
 		{
@@ -104,6 +91,8 @@ class TitleState extends MusicBeatState
 			DiscordClient.shutdown();
 		 });
 		#end
+
+		super.create();
 	}
 
 	var logoBl:FlxSprite;
@@ -115,6 +104,7 @@ class TitleState extends MusicBeatState
 	{
 		if (!initialized)
 		{
+
 			var diamond:FlxGraphic = FlxGraphic.fromClass(GraphicTransTileDiamond);
 			diamond.persist = true;
 			diamond.destroyOnNoUse = false;
@@ -138,6 +128,7 @@ class TitleState extends MusicBeatState
 			FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
 
 			FlxG.sound.music.fadeIn(4, 0, 0.7);
+
 		}
 
 		Conductor.changeBPM(102);
@@ -160,8 +151,12 @@ class TitleState extends MusicBeatState
 
 		gfDance = new FlxSprite(FlxG.width * 0.4, FlxG.height * 0.07);
 		gfDance.frames = Paths.getSparrowAtlas('gfDanceTitle');
-		gfDance.animation.addByIndices('danceLeft', 'gfDance', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14], "", 24, false);
-		gfDance.animation.addByIndices('danceRight', 'gfDance', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
+		gfDance.animation.addByIndices('danceLeft', 'Idle', [30, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16], "", 24, false);
+		gfDance.animation.addByIndices('danceRight', 'Idle', [17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24,
+			false);
+		gfDance.setGraphicSize(Std.int(gfDance.width*.7));
+		gfDance.y -= 75;
+		gfDance.alpha=.1;
 		gfDance.antialiasing = true;
 		add(gfDance);
 		add(logoBl);
@@ -209,11 +204,13 @@ class TitleState extends MusicBeatState
 		FlxTween.tween(credTextShit, {y: credTextShit.y + 20}, 2.9, {ease: FlxEase.quadInOut, type: PINGPONG});
 
 		FlxG.mouse.visible = false;
+		startedIntro=true;
 
 		if (initialized)
 			skipIntro();
 		else
 			initialized = true;
+
 
 		// credGroup.add(credTextShit);
 	}
@@ -237,7 +234,7 @@ class TitleState extends MusicBeatState
 
 	override function update(elapsed:Float)
 	{
-		if (FlxG.sound.music != null)
+		if (FlxG.sound.music != null && startedIntro)
 			Conductor.songPosition = FlxG.sound.music.time;
 		// FlxG.watch.addQuick('amp', FlxG.sound.music.amplitude);
 

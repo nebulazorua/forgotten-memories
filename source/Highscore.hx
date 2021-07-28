@@ -55,6 +55,9 @@ class Highscore
 	static function setScore(song:String, score:Int):Void
 	{
 		// Reminder that I don't need to format this song, it should come formatted!
+		if(song.toLowerCase()=='homebf')
+			song='Home';
+
 		if(!ScoreUtils.botPlay){ // IF ITS A BOT PLAYING THEN DONT DO SHIT!!
 			songScores.set(song, score);
 			FlxG.save.data.songScores = songScores;

@@ -56,7 +56,7 @@ class FreeplayState extends MusicBeatState
 		isDebug = true;
 		#end
 
-		addWeek(['Encounter','Jay','Forest','Forgotten','Home'], 0, ['dad']);
+		addWeek(['Encounter','Jay','Forest','Forgotten','Home'], 0, ['jaysit','jay','jay','jay','ghostjay']);
 
 		// LOAD MUSIC
 

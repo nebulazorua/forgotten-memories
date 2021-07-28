@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="uncloakedsadjay.png">
+	<!-- Created with Adobe Animate version 21.0.5.40714 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="uncloakedsadjay0000" x="4" y="4" width="245" height="329" pivotX="-384.7" pivotY="268.3" frameX="0" frameY="-6" frameWidth="245" frameHeight="335"/>
+	<SubTexture name="uncloakedsadjay0001" x="4" y="4" width="245" height="329" frameX="0" frameY="-6" frameWidth="245" frameHeight="335"/>
+	<SubTexture name="uncloakedsadjay0002" x="253" y="4" width="235" height="335" frameX="-5" frameY="0" frameWidth="245" frameHeight="335"/>
+	<SubTexture name="uncloakedsadjay0003" x="253" y="4" width="235" height="335" frameX="-5" frameY="0" frameWidth="245" frameHeight="335"/>
+</TextureAtlas>

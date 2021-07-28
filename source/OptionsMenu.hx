@@ -53,7 +53,8 @@ class OptionsMenu extends MusicBeatState
 				new ToggleOption("picoCamshake","Week 3 cam shake","Does the train cause a camera shake in week 3"),
 				new ToggleOption("senpaiShaders","Week 6 shaders","Is the CRT effect active in week 6"),
 			])
-		])
+		]),
+		new StateOption("Watch opening cutscene",new VideoState('assets/videos/cutscene.webm', new TitleState()))
 	]);
 
 	private var optionText:FlxTypedGroup<Option>;

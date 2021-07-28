@@ -23,7 +23,7 @@ class StoryMenuState extends MusicBeatState
 	var scoreText:FlxText;
 
 	var weekData:Array<Dynamic> = [
-		['Encounter','Jay','Forest','Forgotten','Home' ],
+		['Encounter','Jay','Forest','Forgotten','Home','Homebf' ],
 	];
 	var curDifficulty:Int = 1;
 
@@ -400,7 +400,8 @@ class StoryMenuState extends MusicBeatState
 
 		for (i in stringThing)
 		{
-			txtTracklist.text += "\n" + i;
+			if(i.toLowerCase()!='homebf')
+				txtTracklist.text += "\n" + i;
 		}
 
 		txtTracklist.text = txtTracklist.text.toUpperCase();
